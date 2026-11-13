@@ -1,0 +1,23 @@
+
+# CIC-IDS2017 raw dataset
+data/raw/CIC-IDS2017/
+MachineLearningCSV.zip
+*.pcap
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Streamlit
+.streamlit/secrets.toml
+
+# macOS
+.DS_Store
+.streamlit/credentials.toml
