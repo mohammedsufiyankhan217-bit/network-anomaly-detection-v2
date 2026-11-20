@@ -1,0 +1,79 @@
+{
+  "status": "PASSED",
+  "model_path": "models/saved_models/rf_model_binary.joblib",
+  "total_test_samples": 19993,
+  "benign_test_samples": 16048,
+  "attack_test_samples": 3945,
+  "metrics": {
+    "accuracy": 0.9972990546691342,
+    "balanced_accuracy": 0.9963102375383355,
+    "precision_attack": 0.9916603487490523,
+    "recall_attack": 0.9946768060836502,
+    "f1_attack": 0.9931662870159453,
+    "precision_weighted": 0.9973032742046195,
+    "recall_weighted": 0.9972990546691342,
+    "f1_weighted": 0.9973006003994619,
+    "precision_macro": 0.9951753976222188,
+    "recall_macro": 0.9963102375383355,
+    "f1_macro": 0.9957416025529795,
+    "roc_auc": 0.9997712502543068,
+    "pr_auc": 0.9990592361312984
+  },
+  "confusion_matrix": {
+    "labels": [
+      "BENIGN",
+      "ATTACK"
+    ],
+    "matrix": [
+      [
+        16015,
+        33
+      ],
+      [
+        21,
+        3924
+      ]
+    ],
+    "true_negatives_TN": 16015,
+    "false_positives_FP": 33,
+    "false_negatives_FN": 21,
+    "true_positives_TP": 3924,
+    "false_positive_rate_FPR": 0.002056331006979063,
+    "false_negative_rate_FNR": 0.00532319391634981
+  },
+  "classification_report": {
+    "BENIGN": {
+      "precision": 0.9986904464953854,
+      "recall": 0.9979436689930209,
+      "f1-score": 0.9983169180900137,
+      "support": 16048.0
+    },
+    "ATTACK": {
+      "precision": 0.9916603487490523,
+      "recall": 0.9946768060836502,
+      "f1-score": 0.9931662870159453,
+      "support": 3945.0
+    },
+    "accuracy": 0.9972990546691342,
+    "macro avg": {
+      "precision": 0.9951753976222188,
+      "recall": 0.9963102375383355,
+      "f1-score": 0.9957416025529795,
+      "support": 19993.0
+    },
+    "weighted avg": {
+      "precision": 0.9973032742046195,
+      "recall": 0.9972990546691342,
+      "f1-score": 0.9973006003994619,
+      "support": 19993.0
+    }
+  },
+  "reported_metrics_comparison": {
+    "previously_reported_accuracy": 0.9972990546691342,
+    "measured_accuracy": 0.9972990546691342,
+    "previously_reported_f1_weighted": 0.9973006003994619,
+    "measured_f1_weighted": 0.9973006003994619,
+    "previously_reported_f1_macro": 0.9957416025529795,
+    "measured_f1_macro": 0.9957416025529795
+  }
+}

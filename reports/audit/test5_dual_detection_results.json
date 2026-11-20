@@ -1,0 +1,33 @@
+{
+  "status": "PASSED",
+  "batch_size": 1000,
+  "agreement_count": 998,
+  "disagreement_count": 2,
+  "agreement_rate": 99.8,
+  "consensus_distribution": {
+    "Consensus Benign (Both Clean)": 499,
+    "Consensus Intrusion (DoS Hulk)": 206,
+    "Consensus Intrusion (PortScan)": 149,
+    "Consensus Intrusion (DDoS)": 113,
+    "Consensus Intrusion (DoS GoldenEye)": 8,
+    "Consensus Intrusion (FTP-Patator)": 7,
+    "Consensus Intrusion (SSH-Patator)": 7,
+    "Consensus Intrusion (DoS Slowhttptest)": 4,
+    "Consensus Intrusion (DoS slowloris)": 3,
+    "Divergent: Multiclass Specific Only": 1,
+    "Consensus Intrusion (Web Attack - Brute Force)": 1,
+    "Divergent: Binary Anomaly Only": 1,
+    "Consensus Intrusion (Web Attack - Sql Injection)": 1
+  },
+  "confidence_statistics": {
+    "binary_mean_conf": 0.9966364000000001,
+    "multiclass_mean_conf": 0.9813756000000001,
+    "binary_min_conf": 0.8682,
+    "multiclass_min_conf": 0.5037
+  },
+  "fault_tolerance": {
+    "missing_column_exception_raised": true,
+    "nan_input_graceful_handling": true,
+    "malformed_string_exception_raised": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "status": "PASSED",
+  "split_reproducible": true,
+  "inference_deterministic": true,
+  "metrics_reproduced": true,
+  "retrain_deterministic": true,
+  "recorded_vs_remeasured": {
+    "binary": {
+      "accuracy_recorded": 0.9972990546691342,
+      "accuracy_remeasured": 0.9972990546691342,
+      "accuracy_diff": 0.0,
+      "f1_weighted_recorded": 0.9973006003994619,
+      "f1_weighted_remeasured": 0.9973006003994619,
+      "f1_macro_recorded": 0.9957416025529795,
+      "f1_macro_remeasured": 0.9957416025529795
+    },
+    "multiclass": {
+      "accuracy_recorded": 0.9946481268443955,
+      "accuracy_remeasured": 0.9946481268443955,
+      "accuracy_diff": 0.0,
+      "f1_weighted_recorded": 0.9951195589505497,
+      "f1_weighted_remeasured": 0.9951195589505497,
+      "f1_macro_recorded": 0.8462837433759114,
+      "f1_macro_remeasured": 0.8462837433759114
+    }
+  },
+  "retrain_evaluation": {
+    "retrained_binary_accuracy": 0.9972990546691342,
+    "production_binary_accuracy": 0.9972990546691342,
+    "accuracy_difference": 0.0
+  }
+}

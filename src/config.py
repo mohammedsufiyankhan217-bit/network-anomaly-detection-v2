@@ -113,3 +113,73 @@ RISK_LEVELS = {
     "MEDIUM": {"color": "#eab308", "min_score": 0.40, "badge": "MEDIUM"},
     "LOW": {"color": "#10b981", "min_score": 0.00, "badge": "NORMAL"},
 }
+
+# Standard Port to Service Mapping for CIC-IDS2017
+PORT_SERVICE_MAP = {
+    80: "HTTP (80)",
+    443: "HTTPS (443)",
+    53: "DNS (53)",
+    22: "SSH (22)",
+    21: "FTP (21)",
+    20: "FTP-Data (20)",
+    25: "SMTP (25)",
+    110: "POP3 (110)",
+    123: "NTP (123)",
+    137: "NetBIOS-NS (137)",
+    138: "NetBIOS-DGM (138)",
+    139: "NetBIOS-SSN (139)",
+    143: "IMAP (143)",
+    161: "SNMP (161)",
+    389: "LDAP (389)",
+    445: "SMB (445)",
+    465: "SMTPS (465)",
+    993: "IMAPS (993)",
+    995: "POP3S (995)",
+    1433: "MSSQL (1433)",
+    3306: "MySQL (3306)",
+    3389: "RDP (3389)",
+    8080: "HTTP-Proxy (8080)",
+    8443: "HTTPS-Alt (8443)",
+    3268: "Global-Catalog (3268)",
+    0: "Reserved (0)",
+}
+
+def resolve_port_service(port: object) -> str:
+    """Infer application service name and port based on standard IANA destination port conventions."""
+    try:
+        p = int(port)
+        return PORT_SERVICE_MAP.get(p, f"Port {p}")
+    except (ValueError, TypeError):
+        return str(port)
+
+def resolve_protocol_group(port: object) -> str:
+    """Infer high-level application/service category based on destination port conventions."""
+    try:
+        p = int(port)
+        if p in (80, 8080):
+            return "HTTP / Web"
+        elif p in (443, 8443):
+            return "HTTPS / TLS"
+        elif p == 53:
+            return "DNS"
+        elif p in (22, 23, 3389):
+            return "Remote Admin (SSH/RDP)"
+        elif p in (20, 21):
+            return "FTP Transfer"
+        elif p in (137, 138, 139, 445):
+            return "NetBIOS / SMB"
+        elif p in (25, 110, 143, 465, 993, 995):
+            return "Mail (SMTP/IMAP)"
+        elif p in (88, 389, 3268):
+            return "Auth / LDAP / Kerberos"
+        elif p in (123, 161):
+            return "Time / Monitoring (NTP/SNMP)"
+        elif p in (1433, 3306):
+            return "Database (SQL)"
+        elif p > 1024:
+            return "Ephemeral / High Ports"
+        else:
+            return "Other Standard Ports"
+    except (ValueError, TypeError):
+        return "Unknown"
+

@@ -2,7 +2,7 @@
 Forensic Reports & CSV Export View for Network Anomaly Detection V2.
 Generates exportable compliance reports, audit logs, and benchmark summaries.
 """
-import json
+from typing import Dict, Any
 import streamlit as st
 import pandas as pd
 
@@ -10,9 +10,9 @@ from src.reporting import generate_detection_report, format_summary_metrics
 from src.model_trainer import load_saved_model
 
 
-def render_reports_view(df_sample: pd.DataFrame, status: dict):
+def render_reports_view(df_sample: pd.DataFrame, status: Dict[str, Any]):
     st.markdown("### 📄 Security Reports & Compliance Exports")
-    st.caption("Generate forensic CSV audit logs and model validation summaries.")
+    st.caption("Generate forensic CSV audit logs and empirical model validation summaries.")
 
     tab1, tab2 = st.tabs(["📥 Detection Audit Log Export", "📊 Model Validation Summary"])
 
@@ -40,6 +40,7 @@ def render_reports_view(df_sample: pd.DataFrame, status: dict):
                 file_name="cicids2017_detection_audit_log.csv",
                 mime="text/csv",
                 type="primary",
+                key="rep_download_log_btn",
             )
 
             # Preview
@@ -50,17 +51,25 @@ def render_reports_view(df_sample: pd.DataFrame, status: dict):
 
     with tab2:
         st.markdown("#### Model Benchmark & Governance Report")
-        artifact = st.session_state.get("model_multiclass") or load_saved_model("multiclass")
+        rep_model_mode = st.radio(
+            "Select Model Architecture for Benchmark Export:",
+            ["multiclass", "binary"],
+            format_func=lambda x: "Multi-Class Threat Classifier (15 Vectors)" if x == "multiclass" else "Binary Anomaly Detector",
+            horizontal=True,
+            key="rep_bench_model_radio",
+        )
+        artifact = st.session_state.get(f"model_{rep_model_mode}") or load_saved_model(rep_model_mode)
         if artifact is not None:
             summary_df = format_summary_metrics(artifact["results"])
             st.dataframe(summary_df, use_container_width=True, hide_index=True)
 
             csv_metrics = summary_df.to_csv(index=False).encode("utf-8")
             st.download_button(
-                label="💾 Download Model Benchmark Summary (CSV)",
+                label=f"💾 Download {rep_model_mode.capitalize()} Model Benchmark Summary (CSV)",
                 data=csv_metrics,
-                file_name="model_benchmark_summary.csv",
+                file_name=f"model_benchmark_summary_{rep_model_mode}.csv",
                 mime="text/csv",
+                key="rep_download_bench_btn",
             )
         else:
             st.info("Train a model to generate governance and benchmark reports.")

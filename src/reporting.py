@@ -68,7 +68,7 @@ def format_summary_metrics(results: Dict[str, Any]) -> pd.DataFrame:
         {"Metric": "Dataset Used", "Value": f"CIC-IDS2017 ({results.get('total_rows_used', 0):,} rows)"},
         {"Metric": "Training Rows", "Value": f"{results.get('train_rows', 0):,}"},
         {"Metric": "Test Rows", "Value": f"{results.get('test_rows', 0):,}"},
-        {"Metric": "Features Used", "Value": results.get("n_features")},
+        {"Metric": "Features Used", "Value": str(results.get("n_features", 0))},
         {"Metric": "Accuracy", "Value": f"{metrics.get('accuracy', 0.0) * 100:.2f}%"},
         {"Metric": "Balanced Accuracy", "Value": f"{metrics.get('balanced_accuracy', 0.0) * 100:.2f}%"},
         {"Metric": "Precision (Weighted)", "Value": f"{metrics.get('precision_weighted', 0.0) * 100:.2f}%"},
@@ -80,4 +80,6 @@ def format_summary_metrics(results: Dict[str, Any]) -> pd.DataFrame:
         {"Metric": "Training Time", "Value": f"{results.get('train_duration_sec', 0)} seconds"},
         {"Metric": "Evaluation Time", "Value": f"{results.get('eval_duration_sec', 0)} seconds"},
     ]
-    return pd.DataFrame(data)
+    df = pd.DataFrame(data)
+    df["Value"] = df["Value"].astype(str)
+    return df

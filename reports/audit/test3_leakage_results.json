@@ -1,0 +1,61 @@
+{
+  "status": "WARNING",
+  "checks": {
+    "check1_exact_duplicates": {
+      "status": "WARNING",
+      "finding": "Exact duplicate flow vectors exist in CIC-IDS2017 due to repetitive automated attack probes and persistent benign keep-alive sessions.",
+      "total_rows": 99964,
+      "exact_duplicates_in_full_dataset": 3570,
+      "duplicate_rate_full_dataset": 0.03571285662838622,
+      "test_rows_identical_to_train": 879,
+      "test_overlap_rate": 4.3965387885760014,
+      "top_overlapping_classes": {
+        "BENIGN": 457,
+        "DoS Hulk": 350,
+        "PortScan": 53,
+        "SSH-Patator": 13,
+        "FTP-Patator": 6
+      }
+    },
+    "check2_near_duplicates": {
+      "status": "WARNING",
+      "finding": "Automated attack tools (hping, Slowloris, PortScan) generate flows with identical packet sizes, TCP flags, and window sizes.",
+      "sample_test_size": 500,
+      "exact_zero_distance_samples": 26,
+      "near_zero_distance_samples": 59
+    },
+    "check3_target_leakage": {
+      "status": "PASSED",
+      "finding": "Zero target labels, label-derived tokens, or direct proxies enter the feature matrix. Maximum correlation with target is reasonable.",
+      "leakage_features_found": [],
+      "max_correlated_feature": "Bwd Packet Length Std",
+      "max_correlation_value": 0.5138595232092642,
+      "any_correlation_gt_0_95": false
+    },
+    "check4_preprocessing_leakage": {
+      "status": "PASSED",
+      "finding": "RobustScaler was fitted strictly on X_train. Zero test distribution information leaked into scaler centers or scales.",
+      "verified_train_only_fit": true,
+      "center_difference_from_full": 241.71484375
+    },
+    "check5_train_test_split": {
+      "status": "PASSED",
+      "finding": "Stratified train_test_split with fixed random_state=42 correctly implemented without index corruption or class dropping.",
+      "test_ratio": 0.2,
+      "random_state": 42
+    },
+    "check6_class_distribution": {
+      "status": "PASSED",
+      "finding": "All 15 attack classes are preserved across both Train and Test sets in near-identical proportions.",
+      "max_class_proportion_delta": 3.751985313502732e-05,
+      "all_classes_present_in_both": true
+    },
+    "check7_capture_session_correlation": {
+      "status": "WARNING",
+      "finding": "Random sampling across a monolithic PCAP capture allows flows from the same attack session to appear in both train and test. Destination Port holds significant Gini importance.",
+      "destination_port_importance_binary": 0.07657932053593722,
+      "destination_port_importance_multiclass": 0.07373990793296077,
+      "accuracy_drop_when_port_zeroed": 2.4858700545190793
+    }
+  }
+}

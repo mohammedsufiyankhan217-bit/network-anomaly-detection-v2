@@ -106,6 +106,20 @@ st.markdown(
         border: 1px solid #1e293b;
         border-radius: 8px;
     }
+
+    /* Compact Chart Selectors */
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] {
+        background-color: #0e1526;
+        border: 1px solid #334155;
+        border-radius: 6px;
+        color: #f1f5f9;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+    }
+    div[data-testid="stSelectbox"] div[data-baseweb="select"]:hover {
+        border-color: #38bdf8;
+        box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+    }
     </style>
     """,
     unsafe_allow_html=True,

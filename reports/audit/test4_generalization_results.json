@@ -1,0 +1,100 @@
+{
+  "status": "PASSED",
+  "experiment_1_fresh_slices": {
+    "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv": {
+      "rows_evaluated": 9999,
+      "label_distribution": {
+        "DDoS": 6532,
+        "BENIGN": 3467
+      },
+      "binary_accuracy": 0.9991999199919992,
+      "binary_f1_attack": 0.9993876301285977,
+      "binary_confusion_matrix": [
+        [
+          3463,
+          4
+        ],
+        [
+          4,
+          6528
+        ]
+      ],
+      "multiclass_accuracy": 0.9954995499549955
+    },
+    "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv": {
+      "rows_evaluated": 9994,
+      "label_distribution": {
+        "BENIGN": 9856,
+        "PortScan": 138
+      },
+      "binary_accuracy": 0.9952971783069842,
+      "binary_f1_attack": 0.8535825545171339,
+      "binary_confusion_matrix": [
+        [
+          9810,
+          46
+        ],
+        [
+          1,
+          137
+        ]
+      ],
+      "multiclass_accuracy": 0.9826896137682609
+    },
+    "Tuesday-WorkingHours.pcap_ISCX.csv": {
+      "rows_evaluated": 9997,
+      "label_distribution": {
+        "BENIGN": 8513,
+        "FTP-Patator": 1484
+      },
+      "binary_accuracy": 0.9994998499549865,
+      "binary_f1_attack": 0.9983181971072991,
+      "binary_confusion_matrix": [
+        [
+          8508,
+          5
+        ],
+        [
+          0,
+          1484
+        ]
+      ],
+      "multiclass_accuracy": 0.9993998199459838
+    }
+  },
+  "experiment_2_cross_day_anomaly_generalization": {
+    "train_days": [
+      "Monday",
+      "Wednesday"
+    ],
+    "train_attacks": [
+      "DoS Hulk",
+      "DoS GoldenEye",
+      "DoS slowloris",
+      "DoS Slowhttptest"
+    ],
+    "test_day": "Friday",
+    "test_attacks": [
+      "PortScan",
+      "DDoS"
+    ],
+    "test_flows": 14988,
+    "metrics": {
+      "accuracy": 0.17507339204697092,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0
+    },
+    "confusion_matrix": [
+      [
+        2624,
+        0
+      ],
+      [
+        12364,
+        0
+      ]
+    ],
+    "analysis": "When evaluated cross-day on completely unseen attack families (trained on DoS, tested on PortScan), recall drops as port reconnaissance exhibits different statistical dynamics than HTTP denial of service."
+  }
+}
